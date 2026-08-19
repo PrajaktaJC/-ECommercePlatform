@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+
+- stage: Build
+  displayName: Build E-Commerce Platform
+
+  jobs:
+
+  - job: Backend
+    displayName: Build Spring Boot Backend
+
+    steps:
+
+    - task: JavaToolInstaller@0
+      inputs:
+        versionSpec: '17'
+        jdkArchitectureOption: 'x64'
+        jdkSourceOption: 'PreInstalled'
+
+    - task: Maven@4
+      displayName: Maven Package
+      inputs:
+        mavenPomFile: 'ecommerce-angular-spring/backend/pom.xml'
+        goals: 'clean package'
+
+  - job: Frontend
+    displayName: Build Angular Frontend
+
+    steps:
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+
+    - script: |
+        cd ecommerce-angular-spring/frontend
+        npm install
+        npm run build
+      displayName: Build Angular Application
