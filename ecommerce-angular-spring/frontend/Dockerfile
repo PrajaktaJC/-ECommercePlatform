@@ -5,7 +5,8 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy the Angular Universal server files to the container
-COPY dist/angular-ecommerce .
+# COPY dist/angular-ecommerce .
+COPY dist/angular-ecommerce/browser .
 
 # Install Nginx
 RUN apk update && apk add nginx
