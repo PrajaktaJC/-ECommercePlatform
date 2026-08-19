@@ -60,4 +60,39 @@ stages:
         targetPath: 'ecommerce-angular-spring/frontend/dist/angular-ecommerce/browser'
         artifact: 'frontend-artifact'
 
-    
+
+- stage: Docker
+  displayName: Build and Push Docker Images
+  dependsOn: Build
+
+  jobs:
+
+  - job: DockerBackend
+    displayName: Docker Backend
+
+    steps:
+
+    - task: DownloadPipelineArtifact@2
+      displayName: Download Backend Artifact
+      inputs:
+        artifact: 'backend-artifact'
+        path: '$(Pipeline.Workspace)/backend'
+
+    - script: |
+        ls -R $(Pipeline.Workspace)/backend
+      displayName: Verify Backend Artifact
+
+  - job: DockerFrontend
+    displayName: Docker Frontend
+
+    steps:
+
+    - task: DownloadPipelineArtifact@2
+      displayName: Download Frontend Artifact
+      inputs:
+        artifact: 'frontend-artifact'
+        path: '$(Pipeline.Workspace)/frontend'
+
+    - script: |
+        ls -R $(Pipeline.Workspace)/frontend
+      displayName: Verify Frontend Artifact
