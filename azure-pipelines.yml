@@ -86,8 +86,8 @@ stages:
     - script: |
         mkdir -p ecommerce-angular-spring/backend/target
         cp $(Pipeline.Workspace)/backend/shop-0.0.1-SNAPSHOT.jar ecommerce-angular-spring/backend/target/
-        ls -R ecommerce-angular-spring/backend/target
-        displayName: Prepare Backend Docker Context
+         ls -R ecommerce-angular-spring/backend/target
+      displayName: Prepare Backend Docker Context
 
     - task: Docker@2
       displayName: Build and Push Backend Image
