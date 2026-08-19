@@ -1,3 +1,4 @@
+# CI pipeline with artifact publishing - backup checkpoint
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
@@ -82,6 +83,17 @@ stages:
         ls -R $(Pipeline.Workspace)/backend
       displayName: Verify Backend Artifact
 
+    - task: Docker@2
+      displayName: Build and Push Backend Image
+      inputs:
+        containerRegistry: 'sc-acr-ecommerce-prod'
+        repository: 'ecommerce-backend'
+        command: 'buildAndPush'
+        Dockerfile: 'ecommerce-angular-spring/backend/Dockerfile'
+        buildContext: 'ecommerce-angular-spring/backend'
+        tags: |
+          latest
+
   - job: DockerFrontend
     displayName: Docker Frontend
 
@@ -96,3 +108,14 @@ stages:
     - script: |
         ls -R $(Pipeline.Workspace)/frontend
       displayName: Verify Frontend Artifact
+
+    - task: Docker@2
+      displayName: Build and Push Frontend Image
+      inputs:
+        containerRegistry: 'sc-acr-ecommerce-prod'
+        repository: 'ecommerce-frontend'
+        command: 'buildAndPush'
+        Dockerfile: 'ecommerce-angular-spring/frontend/Dockerfile'
+        buildContext: 'ecommerce-angular-spring/frontend'
+        tags: |
+          latest 
