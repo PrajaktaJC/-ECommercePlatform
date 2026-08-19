@@ -33,6 +33,12 @@ stages:
         mavenPomFile: 'ecommerce-angular-spring/backend/pom.xml'
         goals: 'clean package -DskipTests'
 
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Backend Artifact
+      inputs:
+        targetPath: 'ecommerce-angular-spring/backend/target'
+        artifact: 'backend-artifact'
+
   - job: Frontend
     displayName: Build Angular Frontend
 
@@ -47,3 +53,11 @@ stages:
         npm install
         npm run build
       displayName: Build Angular Application
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Frontend Artifact
+      inputs:
+        targetPath: 'ecommerce-angular-spring/frontend/dist/angular-ecommerce/browser'
+        artifact: 'frontend-artifact'
+
+    
