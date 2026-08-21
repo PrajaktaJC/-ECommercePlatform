@@ -32,8 +32,8 @@ export class ProductService {
     thePageSize: number,
     theCategoryId: number): Observable<ApiResponseProduct> {
 
-    const searchUrl = `${ this.baseUrl }/search/category?id=${ theCategoryId }`
-      + `&page=${ thePage }&size=${ thePageSize }`;
+    const searchUrl = `${ this.baseUrl }/category?id=${ theCategoryId }`
+     + `&page=${ thePage }&size=${ thePageSize }`;
 
     return this.httpClient.get<ApiResponseProduct>(searchUrl)
       .pipe(map(response => response));
