@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vulnerabilityAssessments_Default_storageContainerPath": {
+            "value": null
+        },
+        "servers_sql_ecommerce_prod001_name": {
+            "value": null
+        },
+        "vaults_kv_ecommerce_prod001_name": {
+            "value": null
+        },
+        "networkSecurityGroups_nsg_aks_prod_name": {
+            "value": null
+        },
+        "storageAccounts_stecommerceprod002_name": {
+            "value": null
+        },
+        "virtualNetworks_vnet_ecommerce_prod_name": {
+            "value": null
+        },
+        "registries_acrecommerceprod1_name": {
+            "value": null
+        },
+        "managedClusters_aks_ecommerce_prod_name": {
+            "value": null
+        },
+        "userAssignedIdentities_aks_ecommerce_prod_agentpool_externalid": {
+            "value": null
+        }
+    }
+}
