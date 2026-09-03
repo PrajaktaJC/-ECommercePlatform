@@ -1,0 +1,39 @@
+Architecture:
+
+                          Internet
+                            |
+                  Application Gateway + WAF
+                            |
+                  -------------------------
+                  |                       |
+                  Frontend Web App    Backend API
+                  (AKS)              (AKS)
+                      |                 |
+                  -------------------------
+                            |
+                        Azure SQL
+                            |
+                      Storage Account
+                            |
+                        Key Vault
+                            |
+                     Azure Monitor &
+                     Log Analytics
+
+CI/CD: 
+                  Developer
+                     |
+                  Azure Repos
+                     |
+                Azure Pipelines
+                     |
+                Terraform
+                     |
+                Azure Infrastructure
+                     |
+                Docker Build
+                     |
+                Azure Container Registry
+                     |
+                AKS Deployment
+
